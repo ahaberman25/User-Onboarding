@@ -41,6 +41,10 @@ export default withFormik({
         tos: Yup.boolean().oneOf([true], 'Please agree to the Terms of Service')
     }),
     handleSubmit: (values, formikBag) => {
-
+        formikBag.props.sendUser({
+            ...values
+        })
+        formikBag.setStatus('form submitting');
+        formikBag.resetForm();
     }
 })(UserForm) // end export and send Form
